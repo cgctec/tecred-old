@@ -89,9 +89,51 @@ if (isset($_POST['form']))
 		}
 		?>
         <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-            <span>Gest&atilde;o de Empr&eacute;stimos</span>
+            <span>Contratos</span>
         </div>
         <div id="conteudo" class="grid_9 scroll omega">
+            <form name="imoveis" action="exc_imovel.php">
+                <div id="menu-superior">
+                    <ul>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/adicionar.png"/></a></li>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/alterar.png"/></a></li>
+                        <li><a href="#" style="position:relative; top:20px;"><input type="image" width="50" heigth="50" src="../imagens/delete.png"/></a></li>
+                    </ul>
+
+                </div>
+                <style>
+                    .top
+                    {
+                        background:#000000;
+                        border: 1px solid green;
+                    }
+                </style>
+                <table width="100%">
+                    <tr>
+                        <Td class="top">-</td>
+                        <td class="top">Num. Contrato</td>
+                        <td class="top" >Data Assinatura</td>
+                        <td class="top">Data Vencimento</td>
+                        <td class="top">Regra de Evolu&ccedil;&atilde;o</td>
+                    </tr>
+                    <?php
+                    $misc = new Misc();
+                    foreach($misc->getContratoList() as $NU_CONTRATO)
+                    {
+                        $contrato = new Contratos($NU_CONTRATO);
+                        echo '
+                                       <tr>
+                                           <td><input type="radio" id="ID_NU_CONTRATO" name="NU_CONTRATO" value="'.$NU_CONTRATO.'"></td>
+                                           <td>'.$NU_CONTRATO.'</td>
+                                           <td>'.@date('d/m/Y',$contrato->DT_ASSINATURA).'</td>
+                                           <td>'.@date('d/m/Y',$contrato->DT_VENCIMENTO).'</td>
+                                           <td>'.$contrato->NU_REGRA_EVOLUCAO.'</td>
+                                       </tr>
+                                       ';
+                    }
+                    ?>
+                </table>
+            </form>
         </div>
         <!-- fim do conteudo -->
         <div id="logo" class="grid_12 alpha omega">

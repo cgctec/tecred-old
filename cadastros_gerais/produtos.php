@@ -1,4 +1,4 @@
-<?php session_start(); include 'head.php'; ?>
+<?php session_start(); include 'head_prod.php'; ?>
 <script>
 function openBox(url)
 {

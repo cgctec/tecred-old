@@ -89,7 +89,7 @@ if (isset($_POST['form']))
 		}
 		?>
    		<div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-			<span>Gestao de Emprestimos</span>
+			<span>Gest&atilde;o de Empr&eacute;stimos</span>
 		</div>
 		<div id="conteudo" class="grid_9 scroll omega">
 			<?php

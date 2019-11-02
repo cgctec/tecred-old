@@ -87,19 +87,14 @@ if (isset($_POST['form']))
                     </ul></div>';
 		}
 		?>
-   		<div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-			<span>Gestao de Emprestimos</span>
-		</div>
-		<div id="conteudo" class="grid_9 scroll omega">
-			<?php
- 			if (str_replace('/sistema', '', $_SERVER['PHP_SELF']) != "/index.php")
-				echo '<p>Pagina restrita, caso ja tenha efetuado login se reporte ao seu supervisor para que ele libere o acesso a essa pagina.</p>';
-			else
-				echo '<p>Efetue login para começar a usar o sistema</p>';
-			?>
-		</div>
-		<!-- fim do conteudo -->
-		<div id="logo" class="grid_12 alpha omega">
+        <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
+            <span>Fatos Operacionais</span>
+        </div>
+        <div id="conteudo" class="grid_9 scroll omega">
+        </div>
+        <!-- fim do conteudo -->
+        <div id="logo" class="grid_12 alpha omega">
+        </div>
  		</div>
 	          </div>
                     </body>

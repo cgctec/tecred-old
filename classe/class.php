@@ -149,7 +149,7 @@ return $ub ;
 		{
 			$query = 'SELECT DISTINCT roteiro_sistema_momento.cod_roteiro as cod_roteiro FROM roteiro_sistema_momento INNER JOIN roteiro ON roteiro.uid = roteiro_sistema_momento.cod_roteiro WHERE roteiro_sistema_momento.cod_sistema = '.$sistema.' AND roteiro_sistema_momento.cod_momento = '.$momento.' '.$con_situacao.' '.$con_vigencia.' ORDER BY roteiro_sistema_momento.cod_roteiro ASC;';
 			echo $query;
-			$result = mysqli_query($query,$con);
+			$result = mysqli_query($con, $query);
 			while ($fetch = @mysqli_fetch_array($result))
 			{
 				$uids[] = $fetch['cod_roteiro'];
@@ -162,7 +162,7 @@ return $ub ;
 				if ($sistema)
 				{
 					$query = 'SELECT DISTINCT roteiro_sistema_momento.cod_roteiro as cod_roteiro FROM roteiro_sistema_momento INNER JOIN roteiro ON roteiro.uid = roteiro_sistema_momento.cod_roteiro WHERE roteiro_sistema_momento.cod_sistema = '.$sistema.' '.$con_situacao.' '.$con_vigencia.' ORDER BY roteiro_sistema_momento.cod_roteiro ASC;';
-					$result = mysqli_query($query,$con);
+					$result = mysqli_query($con, $query);
 					while ($fetch = @mysqli_fetch_array($result))
 					{
 						$uids[] = $fetch['cod_roteiro'];
@@ -171,7 +171,7 @@ return $ub ;
 				if ($momento)
 				{
 					$query = 'SELECT DISTINCT roteiro_sistema_momento.cod_roteiro as cod_roteiro FROM roteiro_sistema_momento INNER JOIN roteiro ON roteiro.uid = roteiro_sistema_momento.cod_roteiro WHERE roteiro_sistema_momento.cod_momento = '.$momento.' '.$con_situacao.' '.$con_vigencia.' ORDER BY roteiro_sistema_momento.cod_roteiro ASC;';
-					$result = mysqli_query($query,$con);
+					$result = mysqli_query($con, $query);
 					while ($fetch = @mysqli_fetch_array($result))
 					{
 						$uids[] = $fetch['cod_roteiro'];
@@ -197,8 +197,8 @@ return $ub ;
                                         $query = 'SELECT * FROM roteiro;';
                                         }
 				//echo $query;
-				$result = mysqli_query($query,$con);
-				while ($fetch = @mysqli_fetch_array($result))
+				$result = mysqli_query($con, $query);
+				while ($fetch = mysqli_fetch_array($result))
 				{
 					$uids[] = $fetch['uid'];
 				}
@@ -295,7 +295,7 @@ return $ub ;
 	          $produtos = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT NU_PRODUTO FROM tabela_produtos WHERE IC_CANCELADO = 'N';",$con);
+	          $result = mysqli_query($con, "SELECT NU_PRODUTO FROM tabela_produtos WHERE IC_CANCELADO = 'N';");
                     while ($fetch = mysqli_fetch_array($result))
                     {
                           $produtos[] = $fetch['NU_PRODUTO'];
@@ -334,7 +334,7 @@ return $ub ;
 	          $acoes = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT COD_PARTICIPANTE FROM participantes;",$con);
+	          $result = mysqli_query($con, "SELECT COD_PARTICIPANTE FROM participantes;");
                     while ($fetch = mysqli_fetch_array($result))
                     {
                           $acoes[] = $fetch['COD_PARTICIPANTE'];
@@ -347,7 +347,7 @@ return $ub ;
 	          $acoes = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT COD_SEGURADORA FROM seguradoras;",$con);
+	          $result = mysqli_query($con, "SELECT COD_SEGURADORA FROM seguradoras;");
                     while ($fetch = mysqli_fetch_array($result))
                     {
                           $acoes[] = $fetch['COD_SEGURADORA'];
@@ -373,7 +373,7 @@ return $ub ;
 	          $acoes = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT NU_CONTRATO FROM contrato;",$con);
+	          $result = mysqli_query($con, "SELECT NU_CONTRATO FROM contrato;");
                     while ($fetch = mysqli_fetch_array($result))
                     {
                           $acoes[] = $fetch['NU_CONTRATO'];
@@ -591,7 +591,7 @@ class Cadastro
 		$this->gerarFlags();
 		$query = 'INSERT INTO users (nome, cpf, endereco, bairro, cidade, estado, email, cargo, id, senha, flags, criador, c_time) VALUES ("'. $this->nome .'", "'. $this->cpf .'", "'. $this->endereco .'", "'. $this->bairro .'", "'. $this->cidade .'", "'. $this->estado .'", "'. $this->email .'", "'. $this->cargo .'", "'. $this->id .'", "'. $this->senha .'", \''.serialize($this->flags).'\', '.$_SESSION['user'].', '.time().');';
 		//echo $query;
-		mysqli_query($query,$con);
+		mysqli_query($con, $query);
 		$sql->close();
 	}
 }
@@ -1001,6 +1001,24 @@ class Consulta_Fatos
 		{
 			$loopcount = count($this->part3);
 		}
+		for ($i = 0; $i <= $loopcount; $i++) {
+			if (!isset($this->part1[$i]))
+			{
+				$this->part1[$i] = '';
+			}
+			if (!isset($this->part2[$i]))
+			{
+				$this->part2[$i] = '';
+			}
+			if (!isset($this->part3[$i]))
+			{
+				$this->part3[$i] = '';
+			}
+			if (!isset($this->part4[$i]))
+			{
+				$this->part4[$i] = '';
+			}
+		}
 		for ($i = 0; $i <= $loopcount; $i++)
 		{
 			if (!isset($this->part1[$i]))
@@ -1097,7 +1115,8 @@ class Produtos
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $no_produto = @mysqli_result(mysqli_query("SELECT NO_PRODUTO FROM tabela_produtos WHERE NU_PRODUTO = $this->NU_PRODUTO ;",$con),0);
+                $no_prod = mysqli_query($con, "SELECT NO_PRODUTO FROM tabela_produtos WHERE NU_PRODUTO = $this->NU_PRODUTO;");
+                $no_produto = mysqli_num_rows($no_prod);
                 $sql->close();
                 if ($no_produto)
                    return true;
@@ -1108,7 +1127,7 @@ class Produtos
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM tabela_produtos WHERE NU_PRODUTO = $this->NU_PRODUTO ;",$con));
+                $dados = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM tabela_produtos WHERE NU_PRODUTO = $this->NU_PRODUTO;"));
                 $sql->close();
                 $this->NO_PRODUTO = $dados['NO_PRODUTO'];
                 $this->DT_INICIO = @date('d/m/Y', $dados['DT_INICIO']);
@@ -1271,7 +1290,8 @@ class Participantes
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $nome = @mysqli_result(mysqli_query("SELECT NOME_PARTICIPANTE FROM participantes WHERE COD_PARTICIPANTE = $this->COD_PARTICIPANTE;", $con),0);
+                  $nome1 = mysqli_query($con, "SELECT NOME_PARTICIPANTE FROM participantes WHERE COD_PARTICIPANTE = $this->COD_PARTICIPANTE;");
+                  $nome = mysqli_num_rows($nome1);
                   $sql->close();
                   if ($nome)
                      return true;
@@ -1282,7 +1302,7 @@ class Participantes
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM participantes WHERE COD_PARTICIPANTE = $this->COD_PARTICIPANTE;",$con),0);
+                  $dados = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM participantes WHERE COD_PARTICIPANTE = $this->COD_PARTICIPANTE;"),MYSQLI_BOTH);
                   $sql->close();
                   $this->NU_CONTRATO = $dados['NU_CONTRATO'];
                   $this->TIPO_PARTICIPANTE = $this->tipoParticipante($dados['TIPO_PARTICIPANTE']);
@@ -1304,7 +1324,8 @@ class Participantes
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $nome = mysqli_result(mysqli_query("SELECT nome FROM tipo_participante WHERE codigo = $tipo;",$con),0);
+                  $nome1 = mysqli_query($con, "SELECT nome FROM tipo_participante WHERE codigo = $tipo;");
+                  $nome = mysqli_num_rows($nome1);
                   $sql->close();
                   return $nome;
           }
@@ -1629,7 +1650,8 @@ class Contratos
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $nome = @mysqli_result(mysqli_query("SELECT ORIGEM FROM contrato WHERE NU_CONTRATO = $this->NU_CONTRATO;", $con),0);
+                  $nome1 = mysqli_query($con, "SELECT ORIGEM FROM contrato WHERE NU_CONTRATO = $this->NU_CONTRATO;");
+                  $nome = mysqli_num_rows($nome1);
                   $sql->close();
                   if ($nome)
                      return true;
@@ -1640,7 +1662,7 @@ class Contratos
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM contrato WHERE NU_CONTRATO = $this->NU_CONTRATO;",$con),0);
+                  $dados = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM contrato WHERE NU_CONTRATO = $this->NU_CONTRATO;"),MYSQLI_BOTH);
                   $sql->close();
                   $this->ORIGEM = $dados['ORIGEM'];
                   $this->SIS_AMORTIZACAO = $dados['SIS_AMORTIZACAO'];

@@ -89,9 +89,53 @@ if (isset($_POST['form']))
 		}
 		?>
         <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-            <span>Gest&atilde;o de Empr&eacute;stimos</span>
+            <span>Produtos</span>
         </div>
         <div id="conteudo" class="grid_9 scroll omega">
+            <form name="produtos" action="exc_produto.php">
+                <div id="menu-superior">
+                    <ul>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/adicionar.png"/></a></li>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/alterar.png"/></a></li>
+                        <li><a href="#" style="position:relative; top:20px;"><input type="image" width="50" heigth="50" src="../imagens/delete.png"/></a></li>
+                    </ul>
+
+                </div>
+                <style>
+                    .top
+                    {
+                        background:#000000;
+                        border: 1px solid green;
+                    }
+                </style>
+                <table width="100%">
+                    <tr>
+                        <Td class="top">-</td>
+                        <td class="top">C&oacute;digo</td>
+                        <td class="top" >Nome</td>
+                        <td class="top">In&iacute;cio</td>
+                        <td class="top">T&eacute;rmino</td>
+                        <td class="top">Excluido</td>
+                    </tr>
+                    <?php
+                    $misc = new Misc();
+                    foreach($misc->getTabelaProdutosList() as $NU_PRODUTO)
+                    {
+                        $produto = new ProdutoS($NU_PRODUTO);
+                        echo '
+                                       <tr>
+                                           <td><input type="radio" id="ID_NU_PRODUTO" name="NU_PRODUTO" value="'.$NU_PRODUTO.'"></td>
+                                           <td>'.$produto->NU_PRODUTO.'</td>
+                                           <td style="text-align:left;">'.$produto->NO_PRODUTO.'</td>
+                                           <td>'.$produto->DT_INICIO.'</td>
+                                           <td>'.$produto->DT_FIM.'</td>
+                                           <td>'.$produto->IC_CANCELADO.'</td>
+                                       </tr>
+                                       ';
+                    }
+                    ?>
+                </table>
+            </form>
         </div>
         <!-- fim do conteudo -->
         <div id="logo" class="grid_12 alpha omega">

@@ -2,7 +2,7 @@
 session_start();
 require_once("../classe/class.php");
 $usuario = new Usuario($_SESSION['user'], null);
-if (!$usuario->securityVerify())
+if ($usuario->securityVerify())
 {
 ?>
 <html>

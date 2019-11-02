@@ -89,9 +89,51 @@ if (isset($_POST['form']))
 		}
 		?>
         <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-            <span>Gest&atilde;o de Empr&eacute;stimos</span>
+            <span>Participantes</span>
         </div>
         <div id="conteudo" class="grid_9 scroll omega">
+            <form name="participantes" action="exc_participante.php">
+                <div id="menu-superior">
+                    <ul>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/adicionar.png"/></a></li>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/alterar.png"/></a></li>
+                        <li><a href="#" style="position:relative; top:20px;"><input type="image" width="50" heigth="50"
+                                                                                    src="../imagens/delete.png"/></a></li>
+                    </ul>
+
+                </div>
+                <style>
+                    .top {
+                        background: #000000;
+                        border: 1px solid green;
+                    }
+                </style>
+                <center>
+                    <table>
+                        <tr>
+                            <Td class="top">-</td>
+                            <td class="top">Codigo</td>
+                            <td class="top" style="width:150px;">Tipo</td>
+                            <td class="top" style="width:400px;">Nome</td>
+                        </tr>
+                        <?php
+                        $misc = new Misc();
+                        $part = $misc->getParticipantesList();
+                        foreach ($part as $COD_PARTICIPANTE) {
+                            $participantes = new Participantes($COD_PARTICIPANTE);
+                            echo '
+                                       <tr>
+                                           <td><input type="radio" id="ID_COD_PARTICIPANTE" name="COD_PARTICIPANTE" value="' . $COD_PARTICIPANTE . '"></td>
+                                           <td>' . $participantes->COD_PARTICIPANTE . '</td>
+                                           <td>' . $participantes->TIPO_PARTICIPANTE . '</td>
+                                           <td style="text-align:left;">' . $participantes->NOME_PARTICIPANTE . '</td>
+                                       </tr>
+                                       ';
+                        }
+                        ?>
+                    </table>
+                </center>
+            </form>
         </div>
         <!-- fim do conteudo -->
         <div id="logo" class="grid_12 alpha omega">
