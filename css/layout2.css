@@ -1,0 +1,562 @@
+body {
+	background: #000000;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 10px;
+	color: #fff;
+}
+
+a {color: #000; text-decoration: none;}
+#fundo_man_roteiro{
+          margin-left:auto;
+		  margin-right:auto;
+          display: block;
+          background: #000000 url(../imagens/content.png) no-repeat;
+          height: 234px;
+	width: 860px;
+}
+.conteudo_man_roteiro
+{
+          position:relative;
+          top:7px;
+          left:10px;
+          height: 210px;
+          overflow: auto;
+	width: 845px;
+}
+#fundo_consulta{
+          margin-top:2%;
+          padding-top: 10px;
+          padding-left:10px;
+          margin-left: 70px;
+          display: block;
+          background: #000000 url(../imagens/fundo_consulta.png) no-repeat;
+          height: 513px;
+	width: 906px;
+}
+.conteudo_consulta
+{
+          position:relative;
+          left:20px;
+          height: 400px;
+          overflow: auto;
+	width: 870px;
+}
+.radio_input
+{
+          position:relative;
+          top:30px;
+}
+.evento{
+          background: url(../imagens/evento.png) no-repeat;
+          height: 57px;
+          width: 800px;
+          position:relative;
+          left: 25px;
+          display: block;
+          padding-top: 10px;
+          padding-left: 10px;
+}
+#logo{
+	height: 50px;
+	width: 940px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-align: center;
+}
+#logo a{
+padding-left: 80px;
+}
+
+.login {margin: 150px auto 0 170px;}
+
+.container_12 {
+	background: #000000 url(../imagens/fundo.png);
+	background-position: top center;
+	background-repeat: no-repeat;
+}
+
+.container_12:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+* html .container_12 {
+	height: 1%;
+}
+
+/***************************************************** MENUS *****************************************************/
+#login-lateral {margin-right: -160px;}
+
+#login-lateral input{
+	width: 115px;
+	display: block;
+	float: left;
+}
+
+#login-lateral ul{
+	list-style: none;
+	margin: 0;
+	margin-top: 240px;
+	margin-left: 0px;
+}
+
+#login-lateral li {
+	margin-left: 0px;
+	margin-bottom: 20px;
+	width: 150px;
+	height: 31px;
+	display: block;
+}
+
+#menu-lateral {margin-right: -160px; position: relative;}
+
+#menu-lateral ul{
+	list-style: none;
+	margin: 0;
+	margin-top: 220px;
+	margin-left: -10px;
+}
+
+#menu-lateral li {
+	margin-left: 0px;
+	margin-bottom: 10px;
+	width: 150px;
+	height: 31px;
+	display: block;
+}
+
+#menu-lateral li a{
+	display: block;
+	padding-top: 8px;
+	padding-left: 18px;
+	height: 27px;
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 100%;
+	color: white;
+}
+
+#menu-lateral li a:hover{
+          color: black;
+	background: url(../imagens/bg-menu-lateral.png);
+	background-repeat: no-repeat;
+}
+#menu-superior{
+	display: block;
+	width: 650px;
+	text-align: center;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #35445F;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#menu-superior ul{margin-bottom: 5px;}
+#menu-superior li{
+	display: inline;
+	margin: 0;
+	margin-top: 20px;
+	}
+
+#menu-superior img{margin-right: 10px; margin-bottom: -20px;}
+#menu-superior a{
+	padding: 0px 10px 10px 5px;
+	display: inline-block;
+
+	
+}
+#menu-superior a:hover{
+	background: #222;
+}
+
+#menu-manutencao{
+	display: block;
+	width: 650px;
+	text-align: center;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+#menu-manutencao ul{
+	width: 490px;
+	display: block;
+	margin: 0 auto;
+}
+#menu-manutencao li{
+	display: block;
+	float: left;
+	margin: 10px 40px;
+	border: 1px solid #35445F;
+	}
+
+#menu-manutencao a img{
+	width: 128px;
+	height: 128px;
+	display: block;
+	float: none;
+	margin: 0 auto;
+}
+	
+#menu-manutencao a{
+	text-align: center;
+	display: block;
+	width: 160px;
+	padding-bottom: 10px;
+}
+#menu-manutencao a:hover{
+	background: #35445F;
+}
+/***************************************************** padrão do layout *****************************************************/
+#titulo {
+	display: block;
+	margin-top: 0px;
+	margin-bottom: 31px;
+	margin-left: 10%;
+}
+
+#titulo span{
+	background: url(../imagens/barra.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+	display: block;
+	padding: 5px 50px 10px 10px;
+	float: left;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+}
+
+#conteudo{
+	overflow: auto;
+	height: 400px;
+	width: 660px;
+	padding: 0 15px;
+	padding-right: 25px;
+}
+
+#formulario {
+	display: block;
+	width: 650px;
+	padding-top: 2px;
+}
+
+/***************************************************** FORM *****************************************************/
+/*
+button {
+	display: block;
+	float: right;
+	background: url(../imagens/enviar.png);
+	width: 194px;
+	height: 50px;
+	position: relative;
+	letter-spacing: -3px;
+	text-indent: -9999px;
+}
+
+
+button:hover {
+	background: url(../imagens/enviar2.png);
+}
+
+*/
+.campos {
+	display: block;
+	float: left;
+	font-weight: bold;
+ margin: 5px 13px 10px 0;
+}
+
+#formulario label {
+	display: block;
+	float: left;
+	font-weight: bold;
+	letter-spacing: -1px;
+	margin-right: 10px;
+}
+
+#formulario input[type="text"], input[type="text"], textarea, select {
+	border: 1px solid #000;
+	margin-right: 2px;
+	padding: 2px;
+	color: #333;
+	display: block;
+	float: left;
+}
+
+#formulario input[class="grid_2"]{
+	margin-right: 10px;
+}
+
+#formulario .sfloat{display: block; float: none;}
+
+hr{margin-bottom: 2px; border: 1px solid #374E78;}
+
+fieldset div{margin-bottom: 5px; display: block;}
+
+.campos:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.border {
+	/*
+	margin: -1px 9px 7px -1px;
+	*/
+	padding: 0 5px;
+	border: 1px solid #333;
+}
+
+.atributos-usuarios td{width: 75px;}
+.atributos-usuarios a{display: block;}
+
+}
+
+
+#formulario .center label, #formulario .center input, #formulario .center button {text-align: center; display: inline; margin: 10px 10px;}
+
+/***************************************************** fim FORM *****************************************************/
+.margin_2 {margin-left: 170px;}
+
+.neditavel {background: #232D3F; padding: 1px 5px; display: block; float: left; margin-right: 3px; text-align: center;}
+
+/***************************************************** scroll pane *****************************************************/
+/* jScrollPane */
+
+.jScrollPaneContainer {
+	overflow: auto;
+	height: 400px;
+	width: 680px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	float: left;
+	margin-top: 10px;
+}
+
+.jScrollPaneTrack {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	height: 100%;
+	background: #000;
+}
+.jScrollPaneDrag {
+	position: absolute;
+	background: url(../imagens/miolo-barra.gif) repeat-y;
+	cursor: pointer;
+	overflow: hidden;
+}
+.jScrollPaneDragTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.jScrollPaneDragBottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+a.jScrollArrowUp {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(../imagens/arrow_up.png) no-repeat;
+	height: 19px;
+	width: 13px;
+}
+a.jScrollArrowUp:hover {
+	/*background-color: #f60;*/
+}
+
+a.jScrollArrowDown {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	right: 0;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(../imagens/arrow_down.png) no-repeat;
+	height: 19px;
+	width: 13px;
+}
+a.jScrollArrowDown:hover {
+	/*background-color: #f60;*/
+}
+a.jScrollActiveArrowButton, a.jScrollActiveArrowButton:hover {
+	/*background-color: #f00;*/
+}
+
+/****************** BOX EDITAR ***************/
+
+#box-editar thead td{
+	color: #fff;
+	text-align: center;
+	background: #333;
+	padding: 2px;
+ border: 2px solid #fff;
+}
+
+#box-editar .titulo-box-editar{
+	display: block;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+	background: #333;
+	font-size: 16px;
+	color: #fff;
+}
+#box-editara .titulo-box-editar{
+	display: block;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+	background: #333;
+	font-size: 16px;
+	color: #fff;
+}
+
+#box-editar{
+	width: auto;
+	overflow: auto;
+	height: 400;
+	letter-spacing: 1px;
+}
+#box-editara{
+	width: auto;
+	overflow: auto;
+	height: 400;
+	letter-spacing: 1px;
+}
+
+#box-editara textarea{
+	width: 538px;
+	padding-bottom: 5px;
+}
+
+#box-editar #formulario label{
+	letter-spacing: 1px;
+	float: none;
+	display: block;
+}
+#box-editar #formulario option{
+	letter-spacing: 0px;
+}
+
+#box-editar .campos{
+	margin: 0 auto;
+	width: 360px;
+	display: block;
+	float: none;
+	width: 100%;
+	margin: 0;
+	padding-bottom: 7px;
+	margin-bottom: 7px;
+	border-bottom: 1px dotted #555;
+}
+
+input[type="radio"], input[type="checkbox"]  {
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+#box-editar input[type="text"], textarea, select{
+	width: 350px;
+}
+
+.right{float: right; margin-left: 30px;}
+.left{float: left; margin-right: 30px;}
+
+#box-editar #formulario {width: 360px;}
+
+#box-editar .neditavel {padding: 2px 5px; border: 1px solid #333; background: #fff;}
+
+fieldset{margin-bottom: 0;}
+
+#menu-conciliacao{
+	display: block;
+	padding: 20px 0px;
+	border-: 1px solid #333;
+}
+
+#menu-conciliacao ul{margin-bottom: 0px;}
+
+#menu-conciliacao li{
+	width: 130px;
+	display: block;
+	float: left;
+	margin: 5px 15px;
+}
+
+#menu-conciliacao li a{
+	font-weight: bold;
+	padding: 0px 5px;
+	padding-top: 2px;
+	text-align: center;
+	display: block;
+	width: 130px;
+	height: 23px;
+	color: #333;
+	background: url(../imagens/bg-botao.png);
+	margin: 0 auto;
+}
+
+#menu-conciliacao li a:hover{background-position: bottom;}
+
+.botao-especial a{
+	font-weight: bold;
+	padding: 0px 5px;
+	padding-top: 2px;
+	text-align: center;
+	display: block;
+	width: 110px;
+	height: 23px;
+	color: #333;
+	background: url(../imagens/bg-botao.png);
+	margin: 0 auto;
+}
+
+.botao-especial a:hover{background-position: bottom;}
+
+#bt-voltar a{
+	background: url(../imagens/bt-voltar.png);
+	display: block;
+	float: right;
+	width: 110px;
+	height: 40px;
+	margin-bottom: -16px;
+	margin-top: -4px;
+}
+#bt-voltar a:hover{background-position: bottom;}
+
+#formulario .campos .grid_1, .grid_2, grid_3, grid_4, .grid_6, .grid_7, grid_8, grid_9 {
+	margin: 0 10px;
+}
+#formulario .campos .alpha{margin-left: 0;}
+#formulario .campos .omega{margin-right: 0;}

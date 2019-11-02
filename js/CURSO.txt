@@ -1,0 +1,51 @@
+<html>
+<head>
+<title> VITOR SEBASTIAO DA SILVA </title>.
+</head> para fechar o cabeçalho da página
+<body>
+<h1> MINHA PRIMEIRA PÁGINA</h1>
+<p> TEXTO QUE VAI NÁ PÁGINA </p>
+<img src="brasil.gif" alt=" imagem do Brasil" align=”center” height=270
+    width=240>
+
+    A imagem deve estar na mesma pasta que o arquivo Html. Ou aponte para a pasta certa. Img src é referente a imagem que precisar ser indicado sua extensão Gif ou Jpg. Height e Width são as dimensões da figura em pixels, modifique a seu gosto. Alt é um texto alternativo enquanto a página é carregada ou quando se passa com o mouse sobre a figura.
+
+    9º Vamos fechar o corpo do texto e terminar com a tag de fechamento.
+
+    Exemplo:
+
+    </body>
+    </html>
+
+    10º Salve com extensão .html ou .htm .
+
+    Exemplo:
+
+    teste.html ou teste.htm
+
+    Abrindo e vendo o resultado. Abra seu navegador padrão( Internet Explorer ou Netscape). Clique em Arquivo /Abrir ou Abrir página/ Procurar . Abra a pasta onde você salvou sua página clique no arquivo html de sua página e de Ok.
+
+    Exemplo completo
+
+    <html>
+    <head>
+    <title>teste html</title>
+    <head>
+    <body>
+    <h1>Minha primeira Home Page</h1>
+    <p>Páginas Html podem ser criadas em qualquer editor ou processador de
+    texto </p>
+    <img src="brasil.gif" alt="Brasil" align=”left” height=150 width=120>
+    </body>
+    </html>
+
+    Veja o resultado teste.htm
+
+    Tanto as figura como o texto ou mesmo os hyperlinks podem ser alinhados no canto esquerdo, direito ou centralizados.
+    Como fazer.
+
+    <p align="center">texto alinhado ao centro</p>
+    <p align="right">texto alinhado a direita</p>
+
+    Caso você não escolha nenhuma dessas duas tags o alinhamento será
+    automático.
