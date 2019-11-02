@@ -87,21 +87,25 @@ if (isset($_POST['form']))
                     </ul></div>';
 		}
 		?>
-   		<div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-			<span>Gestao de Emprestimos</span>
-		</div>
-		<div id="conteudo" class="grid_9 scroll omega">
-			<?php
- 			if (str_replace('/sistema', '', $_SERVER['PHP_SELF']) != "/index.php")
-				echo '<p>Pagina restrita, caso ja tenha efetuado login se reporte ao seu supervisor para que ele libere o acesso a essa pagina.</p>';
-			else
-				echo '<p>Efetue login para começar a usar o sistema</p>';
-			?>
-		</div>
-		<!-- fim do conteudo -->
-		<div id="logo" class="grid_12 alpha omega">
- 		</div>
-	          </div>
+        <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
+            <span>Consultas</span>
+        </div>
+
+        <div id="conteudo" class="grid_9 scroll omega">
+            <div id="menu-superior">
+                <ul>
+                    <li><a href="consulta_fatos.php?height=500&width=900&modal=true" class="thickbox"><img src="../imagens/icones/ferramenta_sintatica.png"/></a></li>
+                    <li><a href="consulta_evento_filtro.php"><img src="../imagens/icones/eventos.png"/></a></li>
+                </ul>
+
+            </div>
+            Selecione um item no menu superior.
+        </div>
+        <!-- fim do conteudo -->
+        <div id="logo" class="grid_12 alpha omega">
+        </div>
+    </div>
+
                     </body>
                     </html>
 		<?php

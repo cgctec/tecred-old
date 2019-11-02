@@ -965,23 +965,22 @@ class Consulta_Fatos
 		for ($tipo = 1; $tipo <= 4; $tipo++)
 		{
 			$query = 'SELECT * FROM modelo_sintatico WHERE tipo = '.$tipo.' ORDER BY codigo ASC;';
-			$result = mysqli_query($query, $con);
+			$result = mysqli_query($con, $query);
 			while ($fetch = mysqli_fetch_array($result))
 			{
-				switch ($tipo)
-				{
+				switch ($tipo) {
 					case 1:
-                                                            $this->part1[] = '<td style="border: 1px solid black;">'.$fetch['codigo'].'</td><td style="border: 1px solid black;">'.htmlentities($fetch['nome']).'</td>';
-                                                            break;
+						$this->part1[] = '<td style="border: 1px solid black;">' . $fetch['codigo'] . '</td><td style="border: 1px solid black;">' . htmlentities($fetch['nome']) . '</td>';
+						break;
 					case 2:
-                                                            $this->part2[] = '<td style="border: 1px solid black;">'.$fetch['codigo'].'</td><td style="border: 1px solid black;">'.htmlentities($fetch['nome']).'</td>';
-                                                            break;
+						$this->part2[] = '<td style="border: 1px solid black;">' . $fetch['codigo'] . '</td><td style="border: 1px solid black;">' . htmlentities($fetch['nome']) . '</td>';
+						break;
 					case 3:
-                                                            $this->part3[] = '<td style="border: 1px solid black;">'.$fetch['codigo'].'</td><td style="border: 1px solid black;">'.htmlentities($fetch['nome']).'</td>';
-                                                            break;
+						$this->part3[] = '<td style="border: 1px solid black;">' . $fetch['codigo'] . '</td><td style="border: 1px solid black;">' . htmlentities($fetch['nome']) . '</td>';
+						break;
 					case 4:
-                                                            $this->part4[] = '<td style="border: 1px solid black;">'.$fetch['codigo'].'</td><td style="border: 1px solid black;">'.htmlentities($fetch['nome']).'</td>';
-                                                            break;
+						$this->part4[] = '<td style="border: 1px solid black;">' . $fetch['codigo'] . '</td><td style="border: 1px solid black;">' . htmlentities($fetch['nome']) . '</td>';
+						break;
 				}
 			}
 		}
@@ -1004,7 +1003,7 @@ class Consulta_Fatos
 		}
 		for ($i = 0; $i <= $loopcount; $i++)
 		{
-			if (!$this->part1[$i])
+			if (!isset($this->part1[$i]))
 			{
 				$part1 = '<td></td><td></td>';
 			}
@@ -1012,7 +1011,7 @@ class Consulta_Fatos
 			{
 				$part1 = $this->part1[$i];
 			}
-			if (!$this->part2[$i])
+			if (!isset($this->part2[$i]))
 			{
 				$part2 = '<td></td><td></td>';
 			}
@@ -1020,7 +1019,7 @@ class Consulta_Fatos
 			{
 				$part2= $this->part2[$i];
 			}
-			if (!$this->part3[$i])
+			if (!isset($this->part3[$i]))
 			{
 				$part3 = '<td></td><td></td>';
 			}
@@ -1028,7 +1027,7 @@ class Consulta_Fatos
 			{
 				$part3 = $this->part3[$i];
 			}
-			if (!$this->part4[$i])
+			if (!isset($this->part4[$i]))
 			{
 				$part4 = '<td></td><td></td>';
 			}

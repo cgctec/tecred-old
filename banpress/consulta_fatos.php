@@ -4,7 +4,7 @@ require_once("../classe/class.php");
 $usuario = new Usuario($_SESSION['user'], null);
 $consulta = new Consulta_Fatos();
 $consulta->MakeLines();
-if (!$usuario->securityVerify())
+if ($usuario->securityVerify())
 {
 ?>
 <html>
