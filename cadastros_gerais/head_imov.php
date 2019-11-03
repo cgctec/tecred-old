@@ -79,18 +79,25 @@ if (isset($_POST['form']))
 		else
 		{
                     echo '<div id="menu-lateral" class="grid_2"><ul>
+                    <li><a href="produtos.php">Produtos</a></li>
+                    <li><a href="contratos.php">Contratos</a></li>
+                    <li><a href="participantes.php">Participantes</a></li>
+                    <li><a href="imoveis.php">Im&oacute;veis</a></li>
+                    <li><a href="consulta_acoes.php">A&ccedil;&otilde;es de Bloqueio</a></li>
                     <li><a href="../">Voltar</a></li>
                     </ul></div>';
 		}
 		?>
         <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-            <span>Controle do Processamento</span>
+            <span>Im&oacute;veis</span>
         </div>
         <div id="conteudo" class="grid_9 scroll omega">
-            <form name="produtos" action="#">
+            <form name="imoveis" action="exc_imovel.php">
                 <div id="menu-superior">
                     <ul>
-                        <li>&nbsp;</li>
+                        <li><a href="#x"><img width="50" heigth="50" src="../imagens/adicionar.png"/></a></li>
+                        <li><a href="#"><img width="50" heigth="50" src="../imagens/alterar.png"/></a></li>
+                        <li><a href="#" style="position:relative; top:20px;"><input type="image" width="50" heigth="50" src="../imagens/delete.png"/></a></li>
                     </ul>
 
                 </div>
@@ -100,34 +107,31 @@ if (isset($_POST['form']))
                         border: 1px solid green;
                     }
                 </style>
-                <Center>
-                    <table width="70%">
-                        <tr>
-                            <td class="top">-</td>
-                            <td class="top">Codigo</td>
-                            <td class="top">Nome</td>
-                            <td class="top">Ultimo Processamento</td>
-                        </tr>
-                        <?php
-                        $misc = new Misc();
-                        $proce = $misc->getProcessamentoList();
-                        foreach ($proce as $codigo) {
-                            $processamento = new Processamento($codigo);
-                            echo '
+                <table width="100%">
+                    <tr>
+                        <Td class="top">-</td>
+                        <td class="top">C&oacute;digo</td>
+                        <td class="top">Estado</td>
+                        <td class="top">Classifica&ccedil;&atilde;o</td>
+                        <td class="top">Tipo de Im&oacute;vel</td>
+                    </tr>
+                    <?php
+                    $misc = new Misc();
+                    $moveis = $misc->getImoveisList();
+                    foreach ($moveis as $COD_IMOVEL) {
+                        $imovel = new Imoveis($COD_IMOVEL);
+                        echo '
                                        <tr>
-                                           <td><input name="processos[]" type="checkbox" value="' . $processamento->codigo . '"></td>
-                                           <td>' . $processamento->codigo . '</td>
-                                           <td style="text-align:left;">' . $processamento->nome . '</td>
-                                           <td style="text-align:left;">' . @date('d/m/Y', $processamento->data) . '</td>
+                                           <td><input type="radio" id="ID_COD_IMOVEL" name="COD_IMOVEL" value="' . $COD_IMOVEL . '"></td>
+                                           <td>' . $COD_IMOVEL . '</td>
+                                           <td style="text-align:left;">' . $imovel->estado . '</td>
+                                           <td>' . $imovel->padrao[0] . '</td>
+                                           <td>' . $imovel->tipo[0] . '</td>
                                        </tr>
                                        ';
-                        }
-                        ?>
-                    </table>
-                </center>
-                <div align="center">
-                    <input type="image" src="../imagens/botao-confirma.png" value="OK"/>
-                </div>
+                    }
+                    ?>
+                </table>
             </form>
         </div>
         <!-- fim do conteudo -->
@@ -142,6 +146,12 @@ if (isset($_POST['form']))
                     else
                     {
                     echo '<div id="menu-lateral" class="grid_2"><ul>
+                    <li><a href="produtos.php">Produtos</a></li>
+                    <li><a href="contratos.php">Contratos</a></li>
+                    <li><a href="participantes.php">Participantes</a></li>
+                    <li><a href="seguradoras.php">Seguradoras</a></li>
+                    <li><a href="imoveis.php">Im&oacute;veis</a></li>
+                    <li><a href="consulta_acoes.php">A&ccedil;&otilde;es de Bloqueio</a></li>
                     <li><a href="../">Voltar</a></li>
                     </ul></div>';
                     }

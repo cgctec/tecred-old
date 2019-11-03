@@ -2,10 +2,8 @@
 session_start();
 require_once("../classe/class.php");
 $usuario = new Usuario($_SESSION['user'], null);
-print_r($_GET['sistema'].' - '.$_GET['momento'].' - '.$_GET['situacao'].' - '.$_GET['vigencia']);
 $misc = new Misc($_GET['sistema'], $_GET['momento'], $_GET['situacao'], $_GET['vigencia']);
 $uids = $misc->getUidArray($_GET['sistema'], $_GET['momento'], $_GET['situacao'], $_GET['vigencia']);
-var_dump($uids);
 /*$uids = Misc::getUidArray($_GET['sistema'], $_GET['momento'], $_GET['situacao'], $_GET['vigencia']);*/
 if ($usuario->securityVerify())
 {

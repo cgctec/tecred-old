@@ -79,15 +79,20 @@ if (isset($_POST['form']))
 		else
 		{
                     echo '<div id="menu-lateral" class="grid_2"><ul>
+                    <li><a href="produtos.php">Produtos</a></li>
+                    <li><a href="contratos.php">Contratos</a></li>
+                    <li><a href="participantes.php">Participantes</a></li>
+                    <li><a href="imoveis.php">Im&oacute;veis</a></li>
+                    <li><a href="consulta_acoes.php">A&ccedil;&atilde;es de Bloqueio</a></li>
                     <li><a href="../">Voltar</a></li>
                     </ul></div>';
 		}
 		?>
         <div id="titulo" class="grid_9" style="float: right; margin-right: 90px;">
-            <span>Controle do Processamento</span>
+            <span>Consulta a&ccedil;&atilde;es de bloqueio</span>
         </div>
         <div id="conteudo" class="grid_9 scroll omega">
-            <form name="produtos" action="#">
+            <form name="produtos" action="exc_produto.php">
                 <div id="menu-superior">
                     <ul>
                         <li>&nbsp;</li>
@@ -103,31 +108,24 @@ if (isset($_POST['form']))
                 <Center>
                     <table width="70%">
                         <tr>
-                            <td class="top">-</td>
                             <td class="top">Codigo</td>
                             <td class="top">Nome</td>
-                            <td class="top">Ultimo Processamento</td>
                         </tr>
                         <?php
                         $misc = new Misc();
-                        $proce = $misc->getProcessamentoList();
-                        foreach ($proce as $codigo) {
-                            $processamento = new Processamento($codigo);
+                        $acoes = $misc->getAcoesList();
+                        foreach ($acoes as $codigo) {
+                            $acao = new Acoes($codigo);
                             echo '
                                        <tr>
-                                           <td><input name="processos[]" type="checkbox" value="' . $processamento->codigo . '"></td>
-                                           <td>' . $processamento->codigo . '</td>
-                                           <td style="text-align:left;">' . $processamento->nome . '</td>
-                                           <td style="text-align:left;">' . @date('d/m/Y', $processamento->data) . '</td>
+                                           <td>' . $acao->codigo . '</td>
+                                           <td style="text-align:left;">' . $acao->nome . '</td>
                                        </tr>
                                        ';
                         }
                         ?>
                     </table>
                 </center>
-                <div align="center">
-                    <input type="image" src="../imagens/botao-confirma.png" value="OK"/>
-                </div>
             </form>
         </div>
         <!-- fim do conteudo -->
@@ -142,6 +140,12 @@ if (isset($_POST['form']))
                     else
                     {
                     echo '<div id="menu-lateral" class="grid_2"><ul>
+                    <li><a href="produtos.php">Produtos</a></li>
+                    <li><a href="contratos.php">Contratos</a></li>
+                    <li><a href="participantes.php">Participantes</a></li>
+                    <li><a href="seguradoras.php">Seguradoras</a></li>
+                    <li><a href="imoveis.php">Im&oacute;veis</a></li>
+                    <li><a href="consulta_acoes.php">A&ccedil;&atilde;es de Bloqueio</a></li>
                     <li><a href="../">Voltar</a></li>
                     </ul></div>';
                     }

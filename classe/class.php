@@ -308,8 +308,8 @@ return $ub ;
 	          $acoes = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT codigo FROM acoes_bloqueio;",$con);
-                    while ($fetch = mysqli_fetch_array($result))
+	          $result = mysqli_query($con, "SELECT codigo FROM acoes_bloqueio;");
+                    while ($fetch = mysqli_fetch_array($result, MYSQLI_BOTH))
                     {
                           $acoes[] = $fetch['codigo'];
                     }
@@ -321,7 +321,7 @@ return $ub ;
 	          $acoes = array();
 	          $sql = new Sql();
 	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT codigo FROM controle_processamento;",$con);
+	          $result = mysqli_query($con, "SELECT codigo FROM controle_processamento;");
                     while ($fetch = mysqli_fetch_array($result))
                     {
                           $acoes[] = $fetch['codigo'];
@@ -357,16 +357,15 @@ return $ub ;
 	}
 	function getImoveisList()
 	{
-	          $acoes = array();
-	          $sql = new Sql();
-	          $con = $sql->connect();
-	          $result = mysqli_query("SELECT COD_IMOVEL FROM imoveis;",$con);
-                    while ($fetch = mysqli_fetch_array($result))
-                    {
-                          $acoes[] = $fetch['COD_IMOVEL'];
-                    }
-	          $sql->close();
-                    return $acoes;
+		$acoes = array();
+		$sql = new Sql();
+		$con = $sql->connect();
+		$result = mysqli_query($con, "SELECT COD_IMOVEL FROM imoveis;");
+		while ($fetch = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+			$acoes[] = $fetch['COD_IMOVEL'];
+		}
+		$sql->close();
+		return $acoes;
 	}
 	function getContratoList()
 	{
@@ -401,8 +400,8 @@ return $ub ;
 		$con = $sql->connect();
 		$options = array();
 		$query = 'SELECT COD_PADRAO, NOME_PADRAO FROM imovel_padrao ORDER BY NOME_PADRAO ASC;';
-		$result = mysqli_query($query, $con);
-		while ($fetch = mysqli_fetch_array($result))
+		$result = mysqli_query($con, $query);
+		while ($fetch = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			$options[] = '<option value="'.$fetch['COD_PADRAO'].'">'.$fetch['NOME_PADRAO'].'</option>';
 		}
@@ -416,7 +415,7 @@ return $ub ;
 		$options = array();
 		$query = 'SELECT COD_TIPO_CONSTRUCAO, NOME_TIPO_CONSTRUCAO FROM imovel_tipo_construcao ORDER BY NOME_TIPO_CONSTRUCAO ASC;';
 		$result = mysqli_query($con, $query);
-		while ($fetch = mysqli_fetch_array($result))
+		while ($fetch = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			$options[] = '<option value="'.$fetch['COD_TIPO_CONSTRUCAO'].'">'.$fetch['NOME_TIPO_CONSTRUCAO'].'</option>';
 		}
@@ -1213,7 +1212,8 @@ class Acoes
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $no_produto = @mysqli_result(mysqli_query("SELECT nome FROM acoes_bloqueio WHERE codigo = $this->codigo ;",$con),0);
+                $no_produto1 = mysqli_query($con, "SELECT nome FROM acoes_bloqueio WHERE codigo = $this->codigo ;");
+                $no_produto = mysqli_num_rows($no_produto1);
                 $sql->close();
                 if ($no_produto)
                    return true;
@@ -1224,7 +1224,7 @@ class Acoes
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM acoes_bloqueio WHERE codigo = $this->codigo ;",$con));
+                $dados = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM acoes_bloqueio WHERE codigo = $this->codigo ;"), MYSQLI_BOTH);
                 $sql->close();
                 $this->nome = $dados['nome'];
           }
@@ -1244,7 +1244,8 @@ class Processamento
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $no_produto = @mysqli_result(mysqli_query("SELECT NOME FROM controle_processamento WHERE CODIGO = $this->codigo ;",$con),0);
+                $no_produto1 = mysqli_query($con, "SELECT NOME FROM controle_processamento WHERE CODIGO = $this->codigo ;");
+                $no_produto = mysqli_num_rows($no_produto1);
                 $sql->close();
                 if ($no_produto)
                    return true;
@@ -1255,7 +1256,7 @@ class Processamento
           {
                 $sql = new Sql();
                 $con = $sql->connect();
-                $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM controle_processamento WHERE CODIGO = $this->codigo ;",$con));
+                $dados = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM controle_processamento WHERE CODIGO = $this->codigo ;"), MYSQLI_BOTH);
                 $sql->close();
                 $this->nome = $dados['NOME'];
                 $this->data = @strtotime($dados['DT_ULTIMO_PROCESSAMENTO']);
@@ -1479,7 +1480,8 @@ class Imoveis
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $nome = @mysqli_result(mysqli_query("SELECT VL_AVALIACAO FROM imoveis WHERE COD_IMOVEL = $this->COD_IMOVEL;", $con),0);
+                  $nome1 = mysqli_query($con, "SELECT VL_AVALIACAO FROM imoveis WHERE COD_IMOVEL = $this->COD_IMOVEL;");
+                  $nome = mysqli_num_rows($nome1);
                   $sql->close();
                   if ($nome)
                      return true;
@@ -1490,7 +1492,7 @@ class Imoveis
           {
                   $sql = new Sql();
                   $con = $sql->connect();
-                  $dados = mysqli_fetch_array(mysqli_query("SELECT * FROM imoveis WHERE COD_IMOVEL = $this->COD_IMOVEL;",$con),0);
+                  $dados = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM imoveis WHERE COD_IMOVEL = $this->COD_IMOVEL;"),MYSQLI_BOTH);
                   $sql->close();
                   $this->NU_CONTRATO = $dados['NU_CONTRATO'];
                   $this->VL_AVALIACAO = $dados['VL_AVALIACAO'];
@@ -1514,9 +1516,9 @@ class Imoveis
                   $sql = new Sql();
                   $con = $sql->connect();
                   if ($reverse)
-                      $nome = mysqli_result(mysqli_query("SELECT COD_PADRAO FROM imovel_padrao WHERE NOME_PADRAO = '$tipo';",$con),0);
+                      $nome = mysqli_fetch_array(mysqli_query($con,"SELECT COD_PADRAO FROM imovel_padrao WHERE NOME_PADRAO = '$tipo';"));
                   else
-                      $nome = mysqli_result(mysqli_query("SELECT NOME_PADRAO FROM imovel_padrao WHERE COD_PADRAO = $tipo;",$con),0);
+                      $nome = mysqli_fetch_array(mysqli_query($con,"SELECT NOME_PADRAO FROM imovel_padrao WHERE COD_PADRAO = $tipo;"));
                   $sql->close();
                   return $nome;
           }
@@ -1525,9 +1527,9 @@ class Imoveis
                   $sql = new Sql();
                   $con = $sql->connect();
                   if ($reverse)
-                     $nome = mysqli_result(mysqli_query("SELECT COD_TIPO_CONSTRUCAO FROM imovel_tipo_construcao WHERE NOME_TIPO_CONSTRUCAO = '$tipo';",$con),0);
+                     $nome = mysqli_fetch_array(mysqli_query($con, "SELECT COD_TIPO_CONSTRUCAO FROM imovel_tipo_construcao WHERE NOME_TIPO_CONSTRUCAO = '$tipo';"));
                   else
-                     $nome = mysqli_result(mysqli_query("SELECT NOME_TIPO_CONSTRUCAO FROM imovel_tipo_construcao WHERE COD_TIPO_CONSTRUCAO = $tipo;",$con),0);
+                     $nome = mysqli_fetch_array(mysqli_query($con, "SELECT NOME_TIPO_CONSTRUCAO FROM imovel_tipo_construcao WHERE COD_TIPO_CONSTRUCAO = $tipo;"));
                   $sql->close();
                   return $nome;
           }
